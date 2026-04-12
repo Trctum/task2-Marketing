@@ -1,4 +1,4 @@
-package dev.kritchalach.producer;
+package dev.Marketing.producer;
 
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;

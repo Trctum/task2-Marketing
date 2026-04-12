@@ -1,4 +1,4 @@
-package dev.kritchalach.producer;
+package dev.Marketing.producer;
 
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
