@@ -8,7 +8,7 @@ public class LeadEventPublisherService {
     // เปลี่ยนจาก Object เป็น String
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final ObjectMapper objectMapper;
-    private static final String TOPIC = "test-topic";
+    private static final String TOPIC = "marketing.lead.events";
 
     public LeadEventPublisherService(KafkaTemplate<String, String> kafkaTemplate, ObjectMapper objectMapper) {
         this.kafkaTemplate = kafkaTemplate;
@@ -17,7 +17,6 @@ public class LeadEventPublisherService {
 
     public void publishLeadForwardedEvent(LeadForwardedEvent event) {
         try {
-            // แปลง Object ให้เป็น JSON String ด้วย ObjectMapper เพื่อความปลอดภัยของข้อมูล
             String jsonPayload = objectMapper.writeValueAsString(event);
             
             kafkaTemplate.send(TOPIC, event.leadId(), jsonPayload);

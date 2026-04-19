@@ -2,6 +2,7 @@ package dev.Marketing.producer;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,10 +21,13 @@ public class ProducerApplication {
             System.out.println("Simulating send auto event..");
             
             String timeStamp = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-            LeadForwardedEvent autoEvent = new LeadForwardedEvent("LD001", "Ratchata", "SALE001", timeStamp);
+            List<LeadForwardedEvent> events = List.of(
+                new LeadForwardedEvent("LD001", "Ratchata","0812345678","ratchata@gmail.com","PRJ001", "SALE001", timeStamp),
+                new LeadForwardedEvent("LD002", "Suradit", "0812345679","suradit@gmail.com","PRJ001", "SALE002", timeStamp),
+                new LeadForwardedEvent("LD003", "Anchana", "0812345680","anchana@gmail.com","PRJ002", "SALE003", timeStamp)
+            );
             
-            producerService.publishLeadForwardedEvent(autoEvent);
+            events.forEach(producerService::publishLeadForwardedEvent);
         };
     }
-
 }

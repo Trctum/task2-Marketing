@@ -14,13 +14,16 @@ public class LeadController {
     public String closeListing(
             @RequestParam String leadId, 
             @RequestParam String customerName, 
+            @RequestParam String phoneNumber,
+            @RequestParam String email,
+            @RequestParam String projectId,
             @RequestParam String assignedSalesId,
             @RequestParam String timeStamp
         ) {
 
-        LeadForwardedEvent event = new LeadForwardedEvent(leadId, customerName, assignedSalesId, timeStamp);
+        LeadForwardedEvent event = new LeadForwardedEvent(leadId, customerName, phoneNumber, email, projectId, assignedSalesId, timeStamp);
         publisherService.publishLeadForwardedEvent(event); 
         
-        return leadId + " has been closed for Buyer: " + customerName + " and event sent to Kafka.";
+        return "Success: Lead " + leadId + " has been sent to Kafka for sale: " + customerName + phoneNumber +email + projectId + " has been Qualified and Event sent to Kafka.";
     }
 }
