@@ -10,7 +10,7 @@ public class MyProducer {
 
 	public MyProducer(KafkaTemplate<String, String> kafkaTemplate) {
 		this.kafkaTemplate = kafkaTemplate;
-		this.kafkaTemplate.send("test-topic", "Hello World from My Producer Component");
+		this.kafkaTemplate.send("project.release.create-topic", "Hello, Connection Test Successful!");
 	}
 
 }

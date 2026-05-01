@@ -18,8 +18,8 @@ public class ProducerApplication {
     @Bean
     public ApplicationRunner runner(LeadEventPublisherService producerService) {
         return args -> {
-            System.out.println("Simulating send auto event..");
-            
+            System.out.println("Simulating send auto event.. (Commented out to prevent unknown topic error)");
+            /*
             String timeStamp = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
             List<LeadForwardedEvent> events = List.of(
                 new LeadForwardedEvent("LD001", "Ratchata","0812345678","ratchata@gmail.com","PRJ001", "SALE001", timeStamp),
@@ -28,6 +28,7 @@ public class ProducerApplication {
             );
             
             events.forEach(producerService::publishLeadForwardedEvent);
+            */
         };
     }
 }
